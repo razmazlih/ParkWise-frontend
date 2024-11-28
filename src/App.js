@@ -1,15 +1,12 @@
-import Navbar from './components/Navbar';
-import ParkingAreas from './components/ParkingAreas/ParkingAreas';
-import ParkingSpots from './components/ParkingSpots/ParkingSpots';
+import React from "react";
+import AppRouter from "./components/Router";
 
 function App() {
-    return (
-        <div className="App">
-            <Navbar />
-            <ParkingAreas />
-            <ParkingSpots />
-        </div>
-    );
+  return (
+    <div className="App">
+      <AppRouter />
+    </div>
+  );
 }
 
 export default App;
