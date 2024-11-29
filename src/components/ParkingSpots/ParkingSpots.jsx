@@ -3,25 +3,38 @@ import { useParams } from 'react-router-dom';
 import apiService from '../../services/api';
 import ParkingSpot from './ParkingSpot';
 
-function ParkingSpots() {
+function ParkingSpots({ parmArea = null }) {
     const [parkingSpots, setParkingSpots] = useState([]);
-    const { areaId } = useParams();
+    let { areaId } = useParams();
+
+    areaId = areaId || parmArea;
 
     useEffect(() => {
-        apiService.getParkingSpotsByArea(areaId)
-        .then(allParkingSpots => {
-            setParkingSpots(allParkingSpots)
-        })
+        apiService.getParkingSpotsByArea(areaId).then((allParkingSpots) => {
+            setParkingSpots(allParkingSpots);
+        });
     }, [areaId]);
-    return (
+
+    const spotsDisplay = (
         <div>
-            {parkingSpots.length > 0 ? 
-            (parkingSpots.map((spot) => (
-                <ParkingSpot key={spot.id} spot={spot} />)
-            ))
-        : (
-            <p>No parking spots available.</p>
-        )}
+            {parkingSpots.length > 0 ? (
+                parkingSpots.map((spot) => (
+                    <ParkingSpot key={spot.id} spot={spot} />
+                ))
+            ) : (
+                <p>No parking spots available.</p>
+            )}
+        </div>
+    );
+
+    return areaId !== parmArea ? (
+        spotsDisplay
+    ) : (
+        <div>
+            <details>
+                <summary>Show spots</summary>
+                {spotsDisplay}
+            </details>
         </div>
     );
 }
