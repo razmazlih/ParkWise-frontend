@@ -49,8 +49,7 @@ function ParkingArea({ area }) {
             <p> מקומות פנויים: {parkingArea.available_places}</p>
             <p>מקומות חניה נגישים פנויים: {parkingArea.available_accessible}</p>
             {parkingSpotsList}
-            <p> אחוזי תפוסה: {parkingArea.occupancy_rate}%</p>
-            <ParkingSpots parmArea={area.id} />
+            <p> אחוזי תפוסה: {parseFloat(parkingArea.occupancy_rate).toFixed(1)}%</p>            <ParkingSpots parmArea={area.id} />
             <EditParkingArea
                 onEditParkingArea={onEditParkingArea}
                 oldArea={parkingArea}
