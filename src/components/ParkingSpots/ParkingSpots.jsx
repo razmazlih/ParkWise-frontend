@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import apiService from '../../services/api';
 import ParkingSpot from './ParkingSpot';
 import AddParkingSpot from './AddParkingSpot';
+import '../styles/ParkingSpots/ParkingSpots.css';
 
 function ParkingSpots({ parmArea = null }) {
     const [parkingSpots, setParkingSpots] = useState([]);
@@ -22,26 +23,26 @@ function ParkingSpots({ parmArea = null }) {
     }
 
     const spotsDisplay = (
-        <div>
+        <div className="spots-container">
             {parkingSpots.length > 0 ? (
                 parkingSpots.map((spot) => (
                     <ParkingSpot key={spot.id} spot={spot} />
                 ))
             ) : (
-                <p> אין חניות פנויות. </p>
+                <p className="no-spots-message">אין חניות פנויות.</p>
             )}
         </div>
     );
 
     return useParmArea ? (
-        <div>
+        <div className="parking-spots">
             <AddParkingSpot handleAddParkingSpot={onAddParkingSpot} />
             {spotsDisplay}
         </div>
     ) : (
-        <div>
-            <details>
-                <summary> הצג חניות </summary>
+        <div className="parking-spots">
+            <details className="spots-details">
+                <summary className="details-summary">הצג חניות</summary>
                 {spotsDisplay}
             </details>
         </div>

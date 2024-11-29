@@ -3,16 +3,20 @@ import './styles/Navbar.css';
 
 function Navbar() {
     return (
-        <div>
-            <ul>
-                <Link to="/" className="parking-link">
-                    <li> דף הבית </li>
-                </Link>
-                <Link to="/parking-areas" className="parking-link">
-                    <li> איזורי חניה </li>
-                </Link>
+        <nav className="navbar">
+            <ul className="navbar-list">
+                <li className="navbar-item">
+                    <Link to="/" className="navbar-link">
+                        דף הבית
+                    </Link>
+                </li>
+                <li className="navbar-item">
+                    <Link to="/parking-areas" className="navbar-link">
+                        איזורי חניה
+                    </Link>
+                </li>
             </ul>
-        </div>
+        </nav>
     );
 }
 

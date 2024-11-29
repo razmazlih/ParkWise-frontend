@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import apiService from '../../services/api';
+import '../styles/ParkingAreas/AddParkingArea.css';
 
 function AddParkingArea({ onAddParkingArea }) {
     const [name, setName] = useState('');
@@ -9,9 +10,9 @@ function AddParkingArea({ onAddParkingArea }) {
     const handleSubmit = (event) => {
         event.preventDefault();
         const areaData = {
-            name: name,
-            city: city,
-            address: address,
+            name,
+            city,
+            address,
         };
         apiService
             .createParkingArea(areaData)
@@ -20,26 +21,31 @@ function AddParkingArea({ onAddParkingArea }) {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="add-parking-area-form" onSubmit={handleSubmit}>
             <input
+                className="input-field"
                 type="text"
                 placeholder="שם המקום"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
             />
             <input
+                className="input-field"
                 type="text"
                 placeholder="עיר"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
             />
             <input
+                className="input-field"
                 type="text"
                 placeholder="כתובת"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
             />
-            <button type="submit"> הוסף איזור חניה </button>
+            <button className="submit-button" type="submit">
+                הוסף איזור חניה
+            </button>
         </form>
     );
 }

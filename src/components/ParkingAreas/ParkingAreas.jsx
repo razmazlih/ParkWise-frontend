@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import apiService from '../../services/api';
 import ParkingArea from './ParkingArea';
 import AddParkingArea from './AddParkingArea';
+import '../styles/ParkingAreas/ParkingAreas.css';
 
 function ParkingAreas() {
     const [allAreas, setAllAreas] = useState([]);
@@ -22,15 +23,19 @@ function ParkingAreas() {
     };
 
     return (
-        <div>
-            <AddParkingArea onAddParkingArea={addParkingArea} />
-            {allAreas.length > 0 ? (
-                allAreas.map((area) => (
-                    <ParkingArea key={area.id} area={area} />
-                ))
-            ) : (
-                <p> טוען איזורי חניה...</p>
-            )}
+        <div className="parking-areas-container">
+            <div className="add-area-section">
+                <AddParkingArea onAddParkingArea={addParkingArea} />
+            </div>
+            <div className="areas-list">
+                {allAreas.length > 0 ? (
+                    allAreas.map((area) => (
+                        <ParkingArea key={area.id} area={area} />
+                    ))
+                ) : (
+                    <p className="loading-message">טוען איזורי חניה...</p>
+                )}
+            </div>
         </div>
     );
 }
