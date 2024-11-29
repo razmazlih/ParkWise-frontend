@@ -26,7 +26,7 @@ function ParkingSpot({ spot }) {
 
     return (
         <div className="parking-spot">
-            <h3 className="spot-position">מיקום: {spotDetails.place_position}</h3>
+            <h3 className="spot-position">מספר חנייה: {spotDetails.place_position}</h3>
             <p className="spot-occupied">תפוס: {spotDetails.occupied ? 'כן' : 'לא'}</p>
             <button className="toggle-button" onClick={toggleOccupied}> שנה </button>
             <p className="spot-accessible">נגיש: {spotDetails.accessible ? 'כן' : 'לא'}</p>
