@@ -4,6 +4,7 @@ import '../styles/ParkingSpots/ParkingSpot.css';
 
 function ParkingSpot({ spot, fullPage }) {
     const [spotDetails, setSpotDetails] = useState({
+        id: spot.id,
         place_position: spot.place_position,
         occupied: spot.occupied,
         accessible: spot.accessible,
@@ -24,11 +25,24 @@ function ParkingSpot({ spot, fullPage }) {
         }
     };
 
+    const handleDelete = () => {
+        apiService
+            .deleteParkingSpot(spotDetails.id)
+            .then((response) => {
+                setSpotDetails(null);
+            })
+            .catch((error) => console.log('Error', error));
+    };
+
     return (
+         spotDetails ? (
         <div className="parking-spot">
             <h3 className="spot-position">
                 מספר חנייה: {spotDetails.place_position}
             </h3>
+            <p className="spot-accessible">
+                נגיש: {spotDetails.accessible ? 'כן' : 'לא'}
+            </p>
             {fullPage ? (
                 <>
                     <p className="spot-occupied">
@@ -40,12 +54,12 @@ function ParkingSpot({ spot, fullPage }) {
                     </button>
                 </>
             ) : null}
-
-            <p className="spot-accessible">
-                נגיש: {spotDetails.accessible ? 'כן' : 'לא'}
-            </p>
+            <button className="toggle-button" onClick={handleDelete}>
+                {' '}
+                מחק{' '}
+            </button>
         </div>
-    );
+    ): null);
 }
 
 export default ParkingSpot;
