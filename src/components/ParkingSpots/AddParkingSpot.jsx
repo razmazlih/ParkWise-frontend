@@ -18,7 +18,7 @@ function AddParkingSpot({ handleAddParkingSpot }) {
         apiService
             .createParkingSpot(newParkingSpot)
             .then((response) => {
-                handleAddParkingSpot(newParkingSpot);
+                handleAddParkingSpot(response);
             })
             .catch((error) => console.log('Error', error));
     }
