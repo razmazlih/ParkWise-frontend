@@ -13,9 +13,13 @@ function ParkingSpots() {
     }, []);
     return (
         <div>
-            {parkingSpots.map((spot) => (
-                <ParkingSpot key={spot.id} spot={spot} />
-            ))}
+            {parkingSpots.length > 0 ? 
+            (parkingSpots.map((spot) => (
+                <ParkingSpot key={spot.id} spot={spot} />)
+            ))
+        : (
+            <p>No parking spots available.</p>
+        )}
         </div>
     );
 }
