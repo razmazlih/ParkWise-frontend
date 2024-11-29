@@ -21,10 +21,10 @@ function ParkingAreas() {
         <div>
             {allAreas.length > 0 ? (
                 allAreas.map((area) => (
-                    <>
-                        <ParkingArea key={area.id} area={area} />
+                    <div key={area.id}>
+                        <ParkingArea area={area} />
                         <ParkingSpots parmArea={area.id} />
-                    </>
+                    </div>
                 ))
             ) : (
                 <p>Loading parking areas...</p>
