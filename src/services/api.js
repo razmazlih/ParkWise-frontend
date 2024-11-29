@@ -55,7 +55,7 @@ const apiService = {
   },
 
   getParkingAreaById: async (id) => {
-    return await apiService.get(`parking-areas/${id}`);
+    return await apiService.get(`parking-areas/${id}/`);
   },
 
   createParkingArea: async (data) => {
@@ -63,11 +63,11 @@ const apiService = {
   },
 
   updateParkingArea: async (id, data) => {
-    return await apiService.put(`parking-areas/${id}`, data);
+    return await apiService.put(`parking-areas/${id}/`, data);
   },
 
   deleteParkingArea: async (id) => {
-    return await apiService.delete(`parking-areas/${id}`);
+    return await apiService.delete(`parking-areas/${id}/`);
   },
 
   getParkingSpots: async (params = {}) => {
@@ -75,11 +75,11 @@ const apiService = {
   },
 
   getParkingSpotById: async (id) => {
-    return await apiService.get(`parking-spots/${id}`);
+    return await apiService.get(`parking-spots/${id}/`);
   },
 
   getParkingSpotsByArea: async (areaId) => {
-    return await apiService.get(`parking-spots/by-area/${areaId}`);
+    return await apiService.get(`parking-spots/by-area/${areaId}/`);
   },
 
   createParkingSpot: async (data) => {
@@ -87,11 +87,11 @@ const apiService = {
   },
 
   updateParkingSpot: async (id, data) => {
-    return await apiService.put(`parking-spots/${id}`, data);
+    return await apiService.put(`parking-spots/${id}/`, data);
   },
 
   deleteParkingSpot: async (id) => {
-    return await apiService.delete(`parking-spots/${id}`);
+    return await apiService.delete(`parking-spots/${id}/`);
   },
 };
 
