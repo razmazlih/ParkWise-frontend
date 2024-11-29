@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import apiService from '../../services/api';
 import ParkingSpot from './ParkingSpot';
@@ -22,11 +22,15 @@ function ParkingSpots({ parmArea = null }) {
         setParkingSpots([...parkingSpots, newParkingSpot]);
     }
 
+    const filteredSpots = useMemo(() => {
+        return !useParmArea ? parkingSpots.filter((spot) => !spot.occupied) : parkingSpots;
+    }, [parkingSpots, useParmArea]);
+
     const spotsDisplay = (
         <div className="spots-container">
-            {parkingSpots.length > 0 ? (
-                parkingSpots.map((spot) => (
-                    <ParkingSpot key={spot.id} spot={spot} edit={useParmArea} />
+            {filteredSpots.length > 0 ? (
+                filteredSpots.map((spot) => (
+                    <ParkingSpot key={spot.id} spot={spot} fullPage={useParmArea} />
                 ))
             ) : (
                 <p className="no-spots-message">אין חניות פנויות.</p>
@@ -42,7 +46,7 @@ function ParkingSpots({ parmArea = null }) {
     ) : (
         <div className="parking-spots">
             <details className="spots-details">
-                <summary className="details-summary">הצג חניות</summary>
+                <summary className="details-summary">הצג חניות פנויות</summary>
                 {spotsDisplay}
             </details>
         </div>

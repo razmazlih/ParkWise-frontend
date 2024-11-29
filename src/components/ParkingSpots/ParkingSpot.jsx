@@ -2,7 +2,7 @@ import { useState } from 'react';
 import apiService from '../../services/api';
 import '../styles/ParkingSpots/ParkingSpot.css';
 
-function ParkingSpot({ spot, edit }) {
+function ParkingSpot({ spot, fullPage }) {
     const [spotDetails, setSpotDetails] = useState({
         place_position: spot.place_position,
         occupied: spot.occupied,
@@ -29,14 +29,16 @@ function ParkingSpot({ spot, edit }) {
             <h3 className="spot-position">
                 מספר חנייה: {spotDetails.place_position}
             </h3>
-            <p className="spot-occupied">
-                תפוס: {spotDetails.occupied ? 'כן' : 'לא'}
-            </p>
-            {edit ? (
-                <button className="toggle-button" onClick={toggleOccupied}>
-                    {' '}
-                    שנה{' '}
-                </button>
+            {fullPage ? (
+                <>
+                    <p className="spot-occupied">
+                        תפוס: {spotDetails.occupied ? 'כן' : 'לא'}
+                    </p>
+                    <button className="toggle-button" onClick={toggleOccupied}>
+                        {' '}
+                        שנה{' '}
+                    </button>
+                </>
             ) : null}
 
             <p className="spot-accessible">

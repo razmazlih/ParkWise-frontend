@@ -24,7 +24,7 @@ function ParkingArea({ area }) {
                 {parkingArea.city} - {parkingArea.address}
             </h2>
             <Link to={`/parking-spots/${parkingArea.id}`} className="area-link">
-                צפה במקומות החניה
+                צפה בכל מקומות החניה
             </Link>
             <p className="area-info">
                 מספר מקומות חניה: {parkingArea.max_places}

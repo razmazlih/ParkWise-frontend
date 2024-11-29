@@ -24,7 +24,7 @@ function EditParkingArea({ onEditParkingArea, oldArea }) {
 
     return (
         <details className="edit-parking-area">
-            <summary className="edit-summary">ערוך</summary>
+            <summary className="edit-summary"> ערוך איזור חניה </summary>
             <input
                 className="input-field"
                 type="text"
