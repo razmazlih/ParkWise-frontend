@@ -6,16 +6,25 @@ import AddParkingSpot from './AddParkingSpot';
 import '../styles/ParkingSpots/ParkingSpots.css';
 
 function ParkingSpots({ parmArea = null }) {
-    const [parkingSpots, setParkingSpots] = useState([]);
+    const [parkingSpots, setParkingSpots] = useState(() => {
+        const cachedSpots = localStorage.getItem('parkingSpots');
+        return cachedSpots ? JSON.parse(cachedSpots) : [];
+    });
     let { areaId } = useParams();
 
     areaId = areaId || parmArea;
     const useParmArea = areaId !== parmArea;
 
     useEffect(() => {
-        apiService.getParkingSpotsByArea(areaId).then((allParkingSpots) => {
-            setParkingSpots(allParkingSpots);
-        });
+        const cachedSpots = localStorage.getItem(`parkingSpots-${areaId}`);
+        if (cachedSpots) {
+            setParkingSpots(JSON.parse(cachedSpots));
+        } else {
+            apiService.getParkingSpotsByArea(areaId).then((allParkingSpots) => {
+                setParkingSpots(allParkingSpots);
+                localStorage.setItem(`parkingSpots-${areaId}`, JSON.stringify(allParkingSpots)); // שמירת הנתונים ב-localStorage
+            });
+        }
     }, [areaId]);
 
     function onAddParkingSpot(newParkingSpot) {

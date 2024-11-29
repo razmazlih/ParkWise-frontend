@@ -5,21 +5,29 @@ import AddParkingArea from './AddParkingArea';
 import '../styles/ParkingAreas/ParkingAreas.css';
 
 function ParkingAreas() {
-    const [allAreas, setAllAreas] = useState([]);
+    const [allAreas, setAllAreas] = useState(() => {
+        const cachedAreas = localStorage.getItem('parkingAreas');
+        return cachedAreas ? JSON.parse(cachedAreas) : [];
+    });
 
     useEffect(() => {
-        apiService
-            .getParkingAreas()
-            .then((data) => {
-                setAllAreas(data);
-            })
-            .catch((error) => {
-                console.error('Failed to fetch parking areas:', error);
-            });
-    }, []);
+        if (allAreas.length === 0) {
+            apiService
+                .getParkingAreas()
+                .then((data) => {
+                    setAllAreas(data);
+                    localStorage.setItem('parkingAreas', JSON.stringify(data));
+                })
+                .catch((error) => {
+                    console.error('Failed to fetch parking areas:', error);
+                });
+        }
+    }, [allAreas]);
 
     const addParkingArea = (newArea) => {
-        setAllAreas([...allAreas, newArea]);
+        const updatedAreas = [...allAreas, newArea];
+        setAllAreas(updatedAreas);
+        localStorage.setItem('parkingAreas', JSON.stringify(updatedAreas)); // עדכון ה-Cache
     };
 
     return (
