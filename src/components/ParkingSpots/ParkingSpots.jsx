@@ -22,7 +22,7 @@ function ParkingSpots({ parmArea = null }) {
                     <ParkingSpot key={spot.id} spot={spot} />
                 ))
             ) : (
-                <p>No parking spots available.</p>
+                <p> אין חניות פנויות. </p>
             )}
         </div>
     );
@@ -32,7 +32,7 @@ function ParkingSpots({ parmArea = null }) {
     ) : (
         <div>
             <details>
-                <summary>Show spots</summary>
+                <summary> הצג חניות </summary>
                 {spotsDisplay}
             </details>
         </div>

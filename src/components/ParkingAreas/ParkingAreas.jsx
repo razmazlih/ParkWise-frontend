@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import apiService from '../../services/api';
 import ParkingArea from './ParkingArea';
-import ParkingSpots from '../ParkingSpots/ParkingSpots';
+import AddParkingArea from './AddParkingArea';
 
 function ParkingAreas() {
     const [allAreas, setAllAreas] = useState([]);
@@ -17,17 +17,19 @@ function ParkingAreas() {
             });
     }, []);
 
+    const addParkingArea = (newArea) => {
+        setAllAreas([...allAreas, newArea]);
+    };
+
     return (
         <div>
+            <AddParkingArea onAddParkingArea={addParkingArea}/>
             {allAreas.length > 0 ? (
                 allAreas.map((area) => (
-                    <div key={area.id}>
-                        <ParkingArea area={area} />
-                        <ParkingSpots parmArea={area.id} />
-                    </div>
+                        <ParkingArea key={area.id} area={area} />
                 ))
             ) : (
-                <p>Loading parking areas...</p>
+                <p> טוען איזורי חניה...</p>
             )}
         </div>
     );

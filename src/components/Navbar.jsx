@@ -6,10 +6,10 @@ function Navbar() {
         <div>
             <ul>
                 <Link to="/" className="parking-link">
-                    <li>Home</li>
+                    <li> דף הבית </li>
                 </Link>
                 <Link to="/parking-areas" className="parking-link">
-                    <li>Free parking spots</li>
+                    <li> מקומות חניה </li>
                 </Link>
             </ul>
         </div>
