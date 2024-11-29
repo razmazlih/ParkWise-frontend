@@ -23,10 +23,10 @@ function ParkingAreas() {
 
     return (
         <div>
-            <AddParkingArea onAddParkingArea={addParkingArea}/>
+            <AddParkingArea onAddParkingArea={addParkingArea} />
             {allAreas.length > 0 ? (
                 allAreas.map((area) => (
-                        <ParkingArea key={area.id} area={area} />
+                    <ParkingArea key={area.id} area={area} />
                 ))
             ) : (
                 <p> טוען איזורי חניה...</p>

@@ -27,14 +27,14 @@ function ParkingArea({ area }) {
             <></>
         );
 
-        function onEditParkingArea(editedArea) {
-            setParkingArea((prevArea) => {
-                return {
-                    ...prevArea,
-                    ...editedArea,
-                };
-            });
-        }
+    function onEditParkingArea(editedArea) {
+        setParkingArea((prevArea) => {
+            return {
+                ...prevArea,
+                ...editedArea,
+            };
+        });
+    }
 
     return parkingArea.id ? (
         <div key={parkingArea.id}>
@@ -51,7 +51,10 @@ function ParkingArea({ area }) {
             {parkingSpotsList}
             <p> אחוזי תפוסה: {parkingArea.occupancy_rate}%</p>
             <ParkingSpots parmArea={area.id} />
-            <EditParkingArea onEditParkingArea={onEditParkingArea}  oldArea={parkingArea} />
+            <EditParkingArea
+                onEditParkingArea={onEditParkingArea}
+                oldArea={parkingArea}
+            />
             <button onClick={() => handleDelete(parkingArea.id)}>
                 מחק איזור חניה
             </button>
