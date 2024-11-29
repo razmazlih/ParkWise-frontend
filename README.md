@@ -1,70 +1,96 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# ParkWise Frontend
 
-## Available Scripts
+The frontend for ParkWise, a parking management system, built with React and styled using CSS.
 
-In the project directory, you can run:
+## Features
+- Display parking spots by area.
+- Add new parking spots dynamically.
+- Filter for available (unoccupied) parking spots.
+- Cache parking spots data using localStorage for faster load times.
 
-### `npm start`
+## Installation
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/razmazlih/ParkWise-frontend.git
+    cd ParkWise-frontend
+    ```
+2. Install dependencies:
+    ```bash
+    npm install
+    ```
+3. Start the development server:
+    ```bash
+    npm start
+    ```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The app will be available at `http://localhost:3000`.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## File Structure
+```
+frontend/
+├── src/
+│   ├── components/
+│   │   ├── ParkingSpots/
+│   │   │   ├── ParkingSpots.jsx
+│   │   │   ├── ParkingSpot.jsx
+│   │   │   ├── AddParkingSpot.jsx
+│   │   │   └── ParkingSpots.css
+│   │   └── ...
+│   ├── services/
+│   │   └── api.js
+│   ├── App.jsx
+│   ├── index.js
+│   └── ...
+├── public/
+│   └── index.html
+└── package.json
+```
 
-### `npm test`
+## Usage
+### Viewing Parking Spots
+The component `ParkingSpots` fetches parking spots for a specific area and displays them.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Props
+- `parmArea` (optional): Default area ID if not specified in the URL.
 
-### `npm run build`
+### Adding Parking Spots
+The `AddParkingSpot` component allows users to add a new parking spot. The newly added spot is dynamically appended to the list.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### LocalStorage
+Parking spots are cached in `localStorage` using the key `parkingSpots-{areaId}` for offline access and performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## API Integration
+The frontend communicates with a backend API via `apiService` (located in `src/services/api.js`). 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### Example API Methods:
+- `getParkingSpotsByArea(areaId)` - Fetches parking spots for a specific area.
 
-### `npm run eject`
+## Styling
+Styles are written in CSS and scoped to individual components (e.g., `ParkingSpots.css`).
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Contributing
+1. Fork the repository.
+2. Create a new branch:
+    ```bash
+    git checkout -b feature-name
+    ```
+3. Commit your changes:
+    ```bash
+    git commit -m "Add feature-name"
+    ```
+4. Push to the branch:
+    ```bash
+    git push origin feature-name
+    ```
+5. Open a pull request.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## License
+This project is licensed under the MIT License.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Future Enhancements
+- Add real-time updates using WebSockets.
+- Implement user authentication.
+- Optimize performance for larger datasets.
