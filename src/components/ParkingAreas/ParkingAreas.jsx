@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import apiService from '../../services/api';
+import ParkingArea from './ParkingArea';
 
 function ParkingAreas() {
     const [allAreas, setAllAreas] = useState([]);
@@ -16,18 +17,7 @@ function ParkingAreas() {
         <div>
             {allAreas.length > 0 ? (
                 allAreas.map((area) => (
-                    <div key={area.id}>
-                        <h2>{area.city} - {area.address}</h2>
-                        <p>Maximum Places: {area.max_places}</p>
-                        <p>Available Places: {area.available_places}</p>
-                        <p>Accessible Places Available: {area.available_accessible}</p>
-                        <ul>
-                            {area.parking_spots.map((spot, index) => (
-                                <li key={index}>{spot}</li>
-                            ))}
-                        </ul>
-                        <p>Occupancy Rate: {area.occupancy_rate}%</p>
-                    </div>
+                    <ParkingArea key={area.id} area={area} />
                 ))
             ) : (
                 <p>Loading parking areas...</p>
