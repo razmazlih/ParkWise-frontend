@@ -6,13 +6,13 @@ function ParkingSpot({ spot }) {
         place_position: spot.place_position,
         occupied: spot.occupied,
         accessible: spot.accessible,
-        area: spot.area
+        area: spot.area,
     });
 
     const toggleOccupied = async () => {
         const updatedDetails = {
             ...spotDetails,
-            occupied: !spotDetails.occupied
+            occupied: !spotDetails.occupied,
         };
 
         try {
