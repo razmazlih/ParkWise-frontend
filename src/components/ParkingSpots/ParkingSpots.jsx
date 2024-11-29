@@ -18,7 +18,7 @@ function ParkingSpots({ parmArea = null }) {
     }, [areaId]);
 
     function onAddParkingSpot(newParkingSpot) {
-        setParkingSpots([...parkingSpots, newParkingSpot])
+        setParkingSpots([...parkingSpots, newParkingSpot]);
     }
 
     const spotsDisplay = (
