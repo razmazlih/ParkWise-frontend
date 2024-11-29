@@ -50,9 +50,8 @@ const apiService = {
     }
   },
 
-  // Parking Areas
   getParkingAreas: async (params = {}) => {
-    return await apiService.get("parking-areas", params);
+    return await apiService.get("parking-areas/", params);
   },
 
   getParkingAreaById: async (id) => {
@@ -60,7 +59,7 @@ const apiService = {
   },
 
   createParkingArea: async (data) => {
-    return await apiService.post("parking-areas", data);
+    return await apiService.post("parking-areas/", data);
   },
 
   updateParkingArea: async (id, data) => {
@@ -71,9 +70,8 @@ const apiService = {
     return await apiService.delete(`parking-areas/${id}`);
   },
 
-  // Parking Spots
   getParkingSpots: async (params = {}) => {
-    return await apiService.get("parking-spots", params);
+    return await apiService.get("parking-spots/", params);
   },
 
   getParkingSpotById: async (id) => {
@@ -81,7 +79,7 @@ const apiService = {
   },
 
   createParkingSpot: async (data) => {
-    return await apiService.post("parking-spots", data);
+    return await apiService.post("parking-spots/", data);
   },
 
   updateParkingSpot: async (id, data) => {
