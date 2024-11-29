@@ -11,9 +11,6 @@ function Navbar() {
                 <Link to="/parking-areas" className="parking-link">
                     <li>Free parking spots</li>
                 </Link>
-                <Link to="/parking-spots" className="parking-link">
-                    <li>Parking spots</li>
-                </Link>
             </ul>
         </div>
     );

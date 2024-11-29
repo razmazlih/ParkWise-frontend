@@ -12,7 +12,7 @@ function AppRouter() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/parking-areas" element={<ParkingAreas />} />
-        <Route path="/parking-spots" element={<ParkingSpots />} />
+        <Route path="/parking-spots/:areaId" element={<ParkingSpots />} />
       </Routes>
     </Router>
   );
