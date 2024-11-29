@@ -26,7 +26,7 @@ function ParkingSpots({ parmArea = null }) {
         <div className="spots-container">
             {parkingSpots.length > 0 ? (
                 parkingSpots.map((spot) => (
-                    <ParkingSpot key={spot.id} spot={spot} />
+                    <ParkingSpot key={spot.id} spot={spot} edit={useParmArea} />
                 ))
             ) : (
                 <p className="no-spots-message">אין חניות פנויות.</p>

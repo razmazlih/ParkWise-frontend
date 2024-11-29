@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import apiService from '../../services/api';
-import '../styles/ParkingSpots/ParkingSpot.css'
+import '../styles/ParkingSpots/ParkingSpot.css';
 
-function ParkingSpot({ spot }) {
+function ParkingSpot({ spot, edit }) {
     const [spotDetails, setSpotDetails] = useState({
         place_position: spot.place_position,
         occupied: spot.occupied,
@@ -26,10 +26,22 @@ function ParkingSpot({ spot }) {
 
     return (
         <div className="parking-spot">
-            <h3 className="spot-position">מספר חנייה: {spotDetails.place_position}</h3>
-            <p className="spot-occupied">תפוס: {spotDetails.occupied ? 'כן' : 'לא'}</p>
-            <button className="toggle-button" onClick={toggleOccupied}> שנה </button>
-            <p className="spot-accessible">נגיש: {spotDetails.accessible ? 'כן' : 'לא'}</p>
+            <h3 className="spot-position">
+                מספר חנייה: {spotDetails.place_position}
+            </h3>
+            <p className="spot-occupied">
+                תפוס: {spotDetails.occupied ? 'כן' : 'לא'}
+            </p>
+            {edit ? (
+                <button className="toggle-button" onClick={toggleOccupied}>
+                    {' '}
+                    שנה{' '}
+                </button>
+            ) : null}
+
+            <p className="spot-accessible">
+                נגיש: {spotDetails.accessible ? 'כן' : 'לא'}
+            </p>
         </div>
     );
 }
