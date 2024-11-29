@@ -78,6 +78,10 @@ const apiService = {
     return await apiService.get(`parking-spots/${id}`);
   },
 
+  getParkingSpotsByArea: async (areaId) => {
+    return await apiService.get(`parking-spots/by-area/${areaId}`);
+  },
+
   createParkingSpot: async (data) => {
     return await apiService.post("parking-spots/", data);
   },
