@@ -16,15 +16,18 @@ function ParkingSpots({ parmArea = null }) {
     const useParmArea = areaId !== parmArea;
 
     useEffect(() => {
-        const cachedSpots = localStorage.getItem(`parkingSpots-${areaId}`);
-        if (cachedSpots) {
-            setParkingSpots(JSON.parse(cachedSpots));
-        } else {
-            apiService.getParkingSpotsByArea(areaId).then((allParkingSpots) => {
+        apiService
+            .getParkingSpotsByArea(areaId)
+            .then((allParkingSpots) => {
                 setParkingSpots(allParkingSpots);
-                localStorage.setItem(`parkingSpots-${areaId}`, JSON.stringify(allParkingSpots)); // שמירת הנתונים ב-localStorage
+                localStorage.setItem(
+                    `parkingSpots-${areaId}`,
+                    JSON.stringify(allParkingSpots)
+                );
+            })
+            .catch((error) => {
+                console.error('Failed to fetch parking spots:', error);
             });
-        }
     }, [areaId]);
 
     function onAddParkingSpot(newParkingSpot) {
@@ -32,14 +35,20 @@ function ParkingSpots({ parmArea = null }) {
     }
 
     const filteredSpots = useMemo(() => {
-        return !useParmArea ? parkingSpots.filter((spot) => !spot.occupied) : parkingSpots;
+        return !useParmArea
+            ? parkingSpots.filter((spot) => !spot.occupied)
+            : parkingSpots;
     }, [parkingSpots, useParmArea]);
 
     const spotsDisplay = (
         <div className="spots-container">
             {filteredSpots.length > 0 ? (
                 filteredSpots.map((spot) => (
-                    <ParkingSpot key={spot.id} spot={spot} fullPage={useParmArea} />
+                    <ParkingSpot
+                        key={spot.id}
+                        spot={spot}
+                        fullPage={useParmArea}
+                    />
                 ))
             ) : (
                 <p className="no-spots-message">אין חניות פנויות.</p>

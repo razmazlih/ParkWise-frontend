@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import apiService from '../../services/api';
 import ParkingArea from './ParkingArea';
 import AddParkingArea from './AddParkingArea';
@@ -11,23 +11,21 @@ function ParkingAreas() {
     });
 
     useEffect(() => {
-        if (allAreas.length === 0) {
-            apiService
-                .getParkingAreas()
-                .then((data) => {
-                    setAllAreas(data);
-                    localStorage.setItem('parkingAreas', JSON.stringify(data));
-                })
-                .catch((error) => {
-                    console.error('Failed to fetch parking areas:', error);
-                });
-        }
-    }, [allAreas]);
+        apiService
+            .getParkingAreas()
+            .then((data) => {
+                localStorage.setItem('parkingAreas', JSON.stringify(data));
+                setAllAreas(data);
+            })
+            .catch((error) => {
+                console.error('Failed to fetch parking areas:', error);
+            });
+    }, []);
 
     const addParkingArea = (newArea) => {
         const updatedAreas = [...allAreas, newArea];
         setAllAreas(updatedAreas);
-        localStorage.setItem('parkingAreas', JSON.stringify(updatedAreas)); // עדכון ה-Cache
+        localStorage.setItem('parkingAreas', JSON.stringify(updatedAreas));
     };
 
     return (

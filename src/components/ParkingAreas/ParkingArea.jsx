@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import apiService from '../../services/api';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ParkingSpots from '../ParkingSpots/ParkingSpots';
 import EditParkingArea from './EditParkingArea';
 import '../styles/ParkingAreas/ParkingArea.css';
@@ -8,11 +8,25 @@ import '../styles/ParkingAreas/ParkingArea.css';
 function ParkingArea({ area }) {
     const [parkingArea, setParkingArea] = useState(area);
 
+    useEffect(() => {
+        setParkingArea(area);
+    }, [area]);
+
     function handleDelete(areaId) {
         apiService
             .deleteParkingArea(areaId)
             .then(() => {
                 setParkingArea([]);
+                const allParkingAreas = JSON.parse(
+                    localStorage.getItem('parkingAreas') || '[]'
+                );
+                const filterdParkingAreas = allParkingAreas.filter(
+                    (oneparkingArea) => oneparkingArea.id !== areaId
+                );
+                localStorage.setItem(
+                    'parkingAreas',
+                    JSON.stringify(filterdParkingAreas)
+                );
             })
             .catch((error) => console.log('Error', error));
     }
