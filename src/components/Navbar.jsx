@@ -9,7 +9,7 @@ function Navbar() {
                     <li> דף הבית </li>
                 </Link>
                 <Link to="/parking-areas" className="parking-link">
-                    <li> מקומות חניה </li>
+                    <li> איזורי חניה </li>
                 </Link>
             </ul>
         </div>
